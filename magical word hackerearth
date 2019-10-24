@@ -1,0 +1,73 @@
+
+
+#include <stdio.h>
+int isprime(int n)
+{
+    int c=0;
+    for(int i=1;i<=n;i++)
+    {
+        if(n%i==0)
+        c++;
+    }
+    if(c==2)
+    return 1;
+    else
+    return 0;
+}
+int closestprime(int n)
+{int x=0;int j=n,k=n;
+while(x!=1)
+     {x=isprime(++j);
+    }
+
+    int y=j;
+    x=0;
+    while(x!=1)
+    {
+        x=isprime(--k);
+        
+    }
+    int z=k;
+    if(n-z>y-n)
+    return y;
+    else if(n-z==y-n)
+    {
+        return z;
+    }
+    else return z;
+
+}
+int main(){
+	int num;
+	long int n;
+
+	scanf("%d", &num);              			// Reading input from STDIN
+for(int i=0;i<num;i++)
+{
+    scanf("%li",&n);
+    char a[n];
+    scanf("%s",a);
+    for(int j=0;j<n;j++)
+    {
+        int ascii=(int)a[j];
+        char p=a[j];
+        if(p=='y'||p=='z'||p=='|'||p=='{'||p=='}')
+        a[j]='q';
+        else if((ascii<65&&ascii<97)||(ascii>90&&ascii>122))
+        a[j]='C';
+       else if(isprime(ascii))
+        a[j]=(char)ascii;
+        else
+        {a[j]=(char)closestprime(ascii);
+        }
+        
+    }
+    for(int j=0;j<n;j++)
+    {
+        printf("%c",a[j]);
+    }
+    printf("\n");
+}
+}
+
+
